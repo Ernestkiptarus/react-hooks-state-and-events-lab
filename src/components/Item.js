@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 
 function Item({ name, category }) {
-  const [isInCart, setIsInCart] = useState(false);
+  const [inCart, setInCart] = useState(false);
 
-  function handleAddToCartClick() {
-    setIsInCart((isInCart) => !isInCart);
-  }
+  const handleAddToCart = () => {
+    setInCart(true);
+  };
+  const itemClass = inCart ? "in-cart" : ""
 
   return (
-    <li className={isInCart ? "in-cart" : ""}>
+    <li className={itemClass}>
       <span>{name}</span>
-      <span className="category">{category}</span>
-      <button
-        className={isInCart ? "remove" : "add"}
-        onClick={handleAddToCartClick}
-      >
-        {isInCart ? "Remove From" : "Add to"} Cart
-      </button>
+      <span>{category}</span>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </li>
   );
 }
